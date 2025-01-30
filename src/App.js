@@ -5,12 +5,12 @@ import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import Parent from "./Parent";
 import Child from "./Child";
 import { MyContext } from "./mycontext";
-import { useContext } from "react";
 import Form from "./Form/Form";
 import CheckBoxes from "./Checkboxes";
 import TodoPrctise from "./todoPrctise";
 import StickyNotes from "./StickyNotes";
 import Home from "./Home";
+import CursorDrag from "./CursorDrag";
 
 function App() {
   const [data, setData] = useState({
@@ -36,12 +36,15 @@ function App() {
   };
 
   console.log("filtered: ", filteredSamples);
+  const [sam, setSam] = useState("");
+  console.log("sam: ", sam);
 
   return (
-    <MyContext.Provider value={data}>
+    <MyContext.Provider value={{ sam, setSam }}>
       <Router>
         <Routes>
           <Route path="/" element={<Home />} />
+          <Route path="/cursor" element={<CursorDrag />} />
           <Route path="/parent" element={<Parent />} />
           <Route path="/child" element={<Child />} />
           <Route path="/stickyNotes" element={<StickyNotes />} />
